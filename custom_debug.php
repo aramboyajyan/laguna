@@ -65,19 +65,22 @@ class Custom_Debug {
     global $wpdb;
     
     // Define table names.
-    $table_name_sample   = $wpdb->prefix . 'boilerplate_sample';
+    $table_name_custom_debug   = $wpdb->prefix . 'custom_debug';
     
     // Check if the tables already exist.
-    if ($wpdb->get_var("SHOW TABLES LIKE '" . $table_name_sample . "'") != $table_name_sample) {
+    if ($wpdb->get_var("SHOW TABLES LIKE '" . $table_name_custom_debug . "'") != $table_name_custom_debug) {
       // Table SQL
-      $table_sample = "CREATE TABLE " . $table_name_sample . "(
-                        sid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                        time INT NOT NULL,
-                        text VARCHAR(8) NOT NULL);";
+      $table_custom_debug = "CREATE TABLE IF NOT EXISTS `{$table_name_custom_debug}` (
+                              `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key.',
+                              `time` int(11) NOT NULL COMMENT 'UNIX timestamp of when the event was logged.',
+                              `type` varchar(128) NOT NULL COMMENT 'Type of the logged message.',
+                              `output` text COMMENT 'Logged output.',
+                              PRIMARY KEY (`ID`)
+                            ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Debug logging for custom plugin development.' AUTO_INCREMENT=1 ;";
       
       // Get the upgrade PHP and create the tables.
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-      dbDelta($table_sample);
+      dbDelta($table_custom_debug);
     }
     
     // Setup default values of the variables.
