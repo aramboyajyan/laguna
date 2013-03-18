@@ -132,8 +132,14 @@ class Custom_Debug {
    * Define links for administrators.
    */
   public function admin_menu() {
+
     // Main settings page.
-    add_menu_page(__('Debugging'), __('Debugging'), 'manage_options', $this->namespace . '/admin-pages/options.php');
+    add_menu_page(__('Debugging'), __('Debugging'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
+
+    // Subpages.
+    add_submenu_page($this->namespace . '/admin-pages/overview.php', __('Overview'), __('Overview'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
+    add_submenu_page($this->namespace . '/admin-pages/overview.php', __('Settings'), __('Settings'), 'manage_options', $this->namespace . '/admin-pages/settings.php');
+
   }
 
   /**
