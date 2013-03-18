@@ -9,10 +9,33 @@
 
 
 /*****************************************************************************
- * Section
+ * Various other elements
  ****************************************************************************/
-
-/* Section end */
+#wp-admin-bar-custom-debug > div {
+  cursor: pointer;
+}
+#custom-debug-wrap {
+  position: fixed;
+  top: 28px;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  color: #FFF;
+}
+#custom-debug-wrap th {
+  background: #333333;
+}
+#custom-debug-wrap table {
+  width: 100%;
+}
+#custom-debug-users-table th#time {
+  width: 200px;
+}
+#custom-debug-users-table th#type {
+  width: 120px;
+}
+/* Various other elements end */
 
 
 /*****************************************************************************

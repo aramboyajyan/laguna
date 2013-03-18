@@ -9,6 +9,10 @@
 jQuery.noConflict();
 jQuery(document).ready(function($) {
 
-  //   
+  var customDebugToggle = $('#wp-admin-bar-custom-debug'),
+      customDebugWrap   = $('#custom-debug-wrap');
+  customDebugToggle.click(function() {
+    customDebugWrap.toggle();
+  }).toggleClass('active');
 
 });

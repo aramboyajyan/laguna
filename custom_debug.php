@@ -48,6 +48,8 @@ class Custom_Debug {
     add_action('init', array(&$this, 'init'));
     add_action('admin_init', array(&$this, 'admin_init'));
     add_action('admin_menu', array(&$this, 'admin_menu'));
+    add_action('admin_bar_menu', array(&$this, 'admin_bar_menu'));
+    add_action('wp_after_admin_bar_render', array(&$this, 'render_menu'));
     // Actions used for recreating the session. Make sure the callback for
     // recreating the session is called last upon login/logout.
     add_action('init', array(&$this, 'recreate_session'));
@@ -144,6 +146,30 @@ class Custom_Debug {
     add_submenu_page($this->namespace . '/admin-pages/overview.php', __('View log'), __('View log'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
     add_submenu_page($this->namespace . '/admin-pages/overview.php', __('Settings'), __('Settings'), 'manage_options', $this->namespace . '/admin-pages/settings.php');
 
+  }
+
+  /**
+   * Add debugging link to the admin navigation bar.
+   */
+  public function admin_bar_menu() {
+    global $wp_admin_bar;
+    $wp_admin_bar->add_menu(array(
+      'id' => 'custom-debug',
+      'parent' => 'top-secondary',
+      'title' => __('Logging'),
+    ));
+  }
+
+  /**
+   * Render our menu.
+   */
+  public function render_menu() {
+    global $wpdb;
+    // Get recent logs.
+    $rows_to_display = get_option(CUSTOM_DEBUG_SHORTNAME . 'rows_to_display');
+    $query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}custom_debug ORDER BY `time` DESC LIMIT 0, %d", array($rows_to_display));
+    $logs = $wpdb->get_results($query);
+    boilerplate_get_view('custom-debug');
   }
 
 }
