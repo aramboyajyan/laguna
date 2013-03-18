@@ -48,8 +48,6 @@ class Custom_Debug {
     add_action('init', array(&$this, 'init'));
     add_action('admin_init', array(&$this, 'admin_init'));
     add_action('admin_menu', array(&$this, 'admin_menu'));
-    add_action('wp_ajax_nopriv_' . $this->namespace . '_ajax', array(&$this, 'ajax'));
-    add_action('wp_ajax_' . $this->namespace . '_ajax', array(&$this, 'ajax'));
     // Actions used for recreating the session. Make sure the callback for
     // recreating the session is called last upon login/logout.
     add_action('init', array(&$this, 'recreate_session'));
@@ -142,37 +140,6 @@ class Custom_Debug {
     // Subpages.
     add_submenu_page($this->namespace . '/admin-pages/overview.php', __('Overview'), __('Overview'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
     add_submenu_page($this->namespace . '/admin-pages/overview.php', __('Settings'), __('Settings'), 'manage_options', $this->namespace . '/admin-pages/settings.php');
-
-  }
-
-  /**
-   * AJAX callback.
-   */
-  public function ajax() {
-    
-    // Check if the nonces match.
-    if (!wp_verify_nonce($_POST['nonce'], $this->namespace . '-post-nonce')) die('Disallowed action.');
-
-    // Check the operation.
-    $op = filter_input(INPUT_POST, 'op', FILTER_SANITIZE_STRING);
-    if (!$op) die('Disallowed operation.');
-
-    // Perform the actions.
-    global $wpdb;
-    switch ($op) {
-
-      // Sample AJAX callback action.
-      case 'settings':
-        break;
-
-      // Default handler.
-      default:
-        die('Disallowed action.');
-
-    }
-
-    // Required by WP.
-    exit;
 
   }
 
