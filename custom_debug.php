@@ -141,7 +141,7 @@ class Custom_Debug {
     add_menu_page(__('Debugging'), __('Debugging'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
 
     // Subpages.
-    add_submenu_page($this->namespace . '/admin-pages/overview.php', __('Overview'), __('Overview'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
+    add_submenu_page($this->namespace . '/admin-pages/overview.php', __('View log'), __('View log'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
     add_submenu_page($this->namespace . '/admin-pages/overview.php', __('Settings'), __('Settings'), 'manage_options', $this->namespace . '/admin-pages/settings.php');
 
   }
