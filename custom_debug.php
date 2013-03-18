@@ -80,7 +80,7 @@ class Custom_Debug {
     }
     
     // Setup default values of the variables.
-    add_option(BOILERPLATE_SHORTNAME . 'sample_variable', '0');
+    add_option(CUSTOM_DEBUG_SHORTNAME . 'rows_to_display', '15');
 
   }
 
