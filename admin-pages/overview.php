@@ -19,6 +19,8 @@ $log_table->prepare_items();
 
   <h2><?php print __('Debugging overview'); ?></h2>
 
+  <p><a class="button"><?php _e('Delete all logs'); ?></a></p>
+
   <!-- #custom-debug-users-table -->
   <form id="custom-debug-users-table" method="get">
     <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
