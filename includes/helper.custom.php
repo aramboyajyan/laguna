@@ -15,7 +15,7 @@
  */
 function custom_debug_watchdog($output, $type = 'log') {
   global $wpdb;
-  $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}_custom_debug (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
+  $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}custom_debug (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
     current_time('timestamp'),
     $type,
     $output,

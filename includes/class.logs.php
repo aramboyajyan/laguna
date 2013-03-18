@@ -82,11 +82,22 @@ class Custom_Debug_Logs extends WP_List_Table {
      * Prepare the data.
      */
     global $wpdb;
-    $data = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}_custom_debug ORDER BY `time` DESC", array()), ARRAY_A);
+    // Order by field.
+    $orderby = 'time';
+    if (isset($_GET['orderby']) && array_key_exists($_GET['orderby'], $sortable)) {
+      $orderby = $_GET['orderby'];
+    }
+    // Order type.
+    $order = 'DESC';
+    if (isset($_GET['order']) && in_array($_GET['order'], array('asc', 'desc'))) {
+      $order = strtoupper($_GET['order']);
+    }
+    // Get the data.
+    $data  = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}custom_debug ORDER BY `{$orderby}` {$order}", array()), ARRAY_A);
 
     foreach ($data as $id => $log) {
       // Construct sample action links.
-      $data[$id]['time'] = date('F d Y, H:i:s', $log->time);
+      $data[$id]['time'] = date('F d Y, H:i:s', $log['time']);
     }
 
     /**
