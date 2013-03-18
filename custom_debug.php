@@ -19,12 +19,15 @@
 // Sanity check.
 if (!defined('ABSPATH')) die('Direct access is not allowed.');
 
+// Constant variables used in the plugin.
+require dirname(__FILE__) . '/includes/constants.php';
+
 // Helper functions.
 require dirname(__FILE__) . '/includes/helper.common.php';
 require dirname(__FILE__) . '/includes/helper.custom.php';
 
-// Constant variables used in the plugin.
-require dirname(__FILE__) . '/includes/constants.php';
+// Log items table class.
+require dirname(__FILE__) . '/includes/class.logs.php';
 
 /**
  * Main plugin class.
