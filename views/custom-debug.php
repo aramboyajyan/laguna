@@ -1,5 +1,3 @@
-<?php print '<pre>' . print_r($logs, TRUE) . '</pre>'; ?>
-
 <!-- #custom-debug-wrap -->
 <div id="custom-debug-wrap" style="display: none;">
 

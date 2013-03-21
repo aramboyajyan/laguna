@@ -165,7 +165,7 @@ class Custom_Debug {
   public function admin_menu() {
 
     // Main settings page.
-    add_menu_page(__('Debugging'), __('Debugging'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
+    add_menu_page(__('Developer'), __('Developer'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
 
     // Subpages.
     add_submenu_page($this->namespace . '/admin-pages/overview.php', __('View log'), __('View log'), 'manage_options', $this->namespace . '/admin-pages/overview.php');
