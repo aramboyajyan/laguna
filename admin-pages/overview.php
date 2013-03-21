@@ -15,8 +15,6 @@ if (isset($_GET['delete']) && $_GET['delete']) {
   exit();
 }
 
-luna_display_message('Hello');
-
 // Create an instance of our user list class.
 $log_table = new Luna_Logs();
 // Fetch, prepare and sort.
