@@ -9,6 +9,7 @@ To be added later.
 ### Todo
 
 - move form elements to separate views
+- possibly include functionality of login lockdown plugin
 
 ### Other
 
