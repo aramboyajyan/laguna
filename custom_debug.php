@@ -26,8 +26,10 @@ require dirname(__FILE__) . '/includes/constants.php';
 require dirname(__FILE__) . '/includes/helper.common.php';
 require dirname(__FILE__) . '/includes/helper.form.php';
 
-// Log items table class.
-require dirname(__FILE__) . '/includes/class.logs.php';
+// Log items table class. Allow overriding from other plugins if necessary.
+if (!class_exists('Custom_Debug_Logs')) {
+  require dirname(__FILE__) . '/includes/class.logs.php';
+}
 
 /**
  * Main plugin class.
