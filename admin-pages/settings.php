@@ -29,7 +29,7 @@ $page = array(
           'value' => get_option(CUSTOM_DEBUG_SHORTNAME . 'rows_to_display'),
         ),
         array(
-          'id' => 'submit_email_general',
+          'id' => 'debug_front_submit',
           'class' => 'last',
           'type' => 'submit',
           'value' => __('Save settings'),
@@ -39,10 +39,10 @@ $page = array(
     // Logging settings end.
     
     /**
-     * General settings.
+     * Login errors.
      */
     array(
-      'title' => __('General settings'),
+      'title' => __('Login errors'),
       'fields' => array(
         // Tab one content.
         array(
@@ -60,14 +60,14 @@ $page = array(
           'value' => get_option(CUSTOM_DEBUG_SHORTNAME . 'login_error_text'),
         ),
         array(
-          'id' => 'submit_email_general',
+          'id' => 'login_errors_submit',
           'class' => 'last',
           'type' => 'submit',
           'value' => __('Save settings'),
         ),
       ),
     ),
-    // General settings end.
+    // Login errors end.
 
   ),
 );
