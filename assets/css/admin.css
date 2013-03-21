@@ -119,5 +119,8 @@
 /*****************************************************************************
  * Various other styles
  ****************************************************************************/
-
+/* Force normal cursor instead of "move" on section headings. */
+#custom-debug-admin-page .custom-debug-fieldset-div h3 {
+  cursor: default;
+}
 /* Various other styles end */
