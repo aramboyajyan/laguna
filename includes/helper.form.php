@@ -15,8 +15,8 @@
  *
  * If $admin_page is enabled, value will be fetched with get_option().
  */
-if (!function_exists('custom_debug_field')):
-function custom_debug_field($field, $print = TRUE, $admin_page = FALSE) {
+if (!function_exists('luna_field')):
+function luna_field($field, $print = TRUE, $admin_page = FALSE) {
   // Wrap.
   $output  = '<div class="form-item ' . $field['class'] . '">';
   // Label.
@@ -28,7 +28,7 @@ function custom_debug_field($field, $print = TRUE, $admin_page = FALSE) {
   // Field value - if it's admin field, fetch it with get_option()
   // "no-save" fields are not saved and can be used for one-time processing.
   if (!$field['no-save']) {
-    $field['value'] = ($admin_page && $field['type'] != 'submit' && !$field['editor']) ? get_option(CUSTOM_DEBUG_SHORTNAME . $field['id']) : $field['value'];
+    $field['value'] = ($admin_page && $field['type'] != 'submit' && !$field['editor']) ? get_option(LUNA_SHORTNAME . $field['id']) : $field['value'];
   }
   // Field wrapper.
   $output .= '<div class="field">';
@@ -69,7 +69,7 @@ function custom_debug_field($field, $print = TRUE, $admin_page = FALSE) {
 
     case 'radios':
       $count = 0;
-      $output .= '<div class="custom-debug-radios-wrapper">';
+      $output .= '<div class="luna-radios-wrapper">';
       foreach ($field['options'] as $value => $label) {
         $selected = ($field['value'] == $value) ? ' checked="checked"' : '';
         $output .= '<label>';
@@ -90,7 +90,7 @@ function custom_debug_field($field, $print = TRUE, $admin_page = FALSE) {
       }
       $output .= '</div>';
       $output .= '<input type="text" id="' . $field['id'] . '" name="' . $field['id'] . '" value="' . $field['value'] . '" />';
-      $output .= '<a class="custom-debug-uploader button">' . __('Upload image') . '</a>';
+      $output .= '<a class="luna-uploader button">' . __('Upload image') . '</a>';
       break;
 
     case 'checkbox':
@@ -118,8 +118,8 @@ endif;
 /**
  * Closing for custom fields.
  */
-if (!function_exists('custom_debug_field_close')):
-function custom_debug_field_close($print = TRUE) {
+if (!function_exists('luna_field_close')):
+function luna_field_close($print = TRUE) {
   return $print ? print '<div class="form-item-clear"></div>' : '<div class="form-item-clear"></div>';
 }
 endif;
@@ -127,10 +127,10 @@ endif;
 /**
  * Generate admin page.
  */
-if (!function_exists('custom_debug_generate_admin_page')):
-function custom_debug_generate_admin_page($page) {
+if (!function_exists('luna_generate_admin_page')):
+function luna_generate_admin_page($page) {
   // Wrap everything for styling.
-  $output  = '<div id="custom-debug-admin-page"><div class="wrap">';
+  $output  = '<div id="luna-admin-page"><div class="wrap">';
   // Page title and tabs.
   $output .= '<h2>' . $page['title'] . '</h2>';
   // Page description.
@@ -142,20 +142,20 @@ function custom_debug_generate_admin_page($page) {
   // Page fields.
   if (isset($page['fieldset'])) {
     foreach ($page['fieldset'] as $fieldset) {
-      $output .= '<div class="custom-debug-fieldset-div metabox-holder">';
+      $output .= '<div class="luna-fieldset-div metabox-holder">';
       $output .= '<div class="postbox">';
       $output .= '<h3><span>' . $fieldset['title'];
       if (count($fieldset['tabs'])) {
-        $output .= '<div class="custom-debug-tabs">';
+        $output .= '<div class="luna-tabs">';
         foreach ($fieldset['tabs'] as $tab) {
-          $output .= '<a class="custom-debug-tab-trigger" rel="' . $tab['trigger'] . '">' . $tab['title'] . '</a>';
+          $output .= '<a class="luna-tab-trigger" rel="' . $tab['trigger'] . '">' . $tab['title'] . '</a>';
         }
         $output .= '</div>';
       }
       $output .= '</span></h3>';
       $output .= '<div class="inside">';
-      foreach ($fieldset['fields'] as $field) $output .= custom_debug_field($field, FALSE, TRUE);
-      $output .= custom_debug_field_close(FALSE);
+      foreach ($fieldset['fields'] as $field) $output .= luna_field($field, FALSE, TRUE);
+      $output .= luna_field_close(FALSE);
       $output .= '</div>';
       $output .= '</div>';
       $output .= '</div>';

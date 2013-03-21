@@ -9,8 +9,8 @@
 jQuery.noConflict();
 jQuery(document).ready(function($) {
 
-  var customDebugToggle = $('#wp-admin-bar-custom-debug'),
-      customDebugWrap   = $('#custom-debug-wrap');
+  var customDebugToggle = $('#wp-admin-bar-luna'),
+      customDebugWrap   = $('#luna-wrap');
   customDebugToggle.click(function() {
     customDebugWrap.toggle();
   }).toggleClass('active');

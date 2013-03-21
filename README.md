@@ -1,4 +1,4 @@
-# WordPress plugin for development logging
+# Luna WordPress framework for custom plugin development
 
 Plugin to be used for custom development. Allows developers to log any information and access it from anywhere through the admin navigation bar.
 

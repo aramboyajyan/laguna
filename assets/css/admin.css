@@ -120,11 +120,11 @@
  * Various other styles
  ****************************************************************************/
 /* Force normal cursor instead of "move" on section headings. */
-#custom-debug-admin-page .custom-debug-fieldset-div h3 {
+#luna-admin-page .luna-fieldset-div h3 {
   cursor: default;
 }
 /* Space out the wrapper for custom controls in table header. */
-#custom-debug-table-header {
+#luna-table-header {
   padding: 3px 8px 0 0;
   float: left;
 }
