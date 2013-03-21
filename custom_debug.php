@@ -66,6 +66,8 @@ class Custom_Debug {
     if (get_option(CUSTOM_DEBUG_SHORTNAME . 'login_errors_enabled')) {
       add_filter('login_errors', array(&$this, 'login_errors'));
     }
+    // Remove WordPress version from the HTML output.
+    add_filter('the_generator', array(&$this, 'the_generator'));
   }
 
   /**
@@ -195,9 +197,19 @@ class Custom_Debug {
     custom_debug_get_view('custom-debug');
   }
 
+  /**
+   * Login errors override.
+   */
   public function login_errors() {
     $login_error_text = get_option(CUSTOM_DEBUG_SHORTNAME . 'login_error_text');
     return __($login_error_text);
+  }
+
+  /**
+   * Remove WordPress version from the HTML output.
+   */
+  public function the_generator() {
+    return '';
   }
 
 }
