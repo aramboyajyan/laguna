@@ -80,16 +80,25 @@ endif;
 /**
  * Log output to the database.
  */
-if (!function_exists('luna_watchdog')):
-function luna_watchdog($output, $type = 'log') {
+if (!function_exists('luna_log')):
+function luna_log($output, $type = 'log', $pre = FALSE) {
   global $wpdb;
+  
   // If output is an array/object, convert it to a string.
   if (is_array($output) || is_object($output)) {
     $output = print_r($output, TRUE);
   }
+
+  // Wrap everything in <pre>tags</pre>.
+  if ($pre) {
+    $output = '<pre>' . $output . '</pre>';
+  }
+  
   // For ease of use and further processing, $log name has to be lowercase and
   // without spaces or any special characters. Make sure the format is proper.
+  $type = $type ? $type : 'log';
   $type = preg_replace('/[^A-Za-z0-9]_-/', '', $type);
+  
   // Log the event.
   $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}luna (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
     current_time('timestamp'),
@@ -162,5 +171,24 @@ function luna_options_page_path($page, $absolute = TRUE) {
   $options_page = '/wp-admin/admin.php?page=luna/admin-pages/' . $page . '.php';
   
   return $absolute ? get_site_url() . $options_page : $options_page;
+}
+endif;
+
+/**
+ * Displays a message for administrator.
+ */
+if (!function_exists('luna_display_message')):
+function luna_display_message($message, $class = 'update') {
+  $messages = array();
+  if (isset($_SESSION['luna_admin_messages']) && is_array($_SESSION['luna_admin_messages'])) {
+    $messages = $_SESSION['luna_admin_messages'];
+  }
+  // Make sure to pass TRUE as the last argument for luna_get_view() function;
+  // that will return the output of the view instead of printing it out to the
+  // screen.
+  $messages[$class][] = $message;
+  // Add message to the list.
+  $_SESSION['luna_admin_messages'] = $messages;
+  luna_log($_SESSION['luna_admin_messages']);
 }
 endif;

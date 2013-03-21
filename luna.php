@@ -36,8 +36,8 @@ if (!class_exists('Luna_Logs')) {
  */
 class Luna {
 
-  // Plugin name; to be used throughout this class
-  // Has to be the same as the plugin folder name.
+  // Plugin name; to be used throughout this class has to be the same as the
+  // plugin folder name.
   var $namespace = 'luna';
 
   /**
@@ -48,6 +48,7 @@ class Luna {
     add_action('init', array(&$this, 'init'));
     add_action('admin_init', array(&$this, 'admin_init'));
     add_action('admin_menu', array(&$this, 'admin_menu'));
+    add_action('admin_notices', array(&$this, 'admin_notices'));
     add_action('admin_bar_menu', array(&$this, 'admin_bar_menu'));
     add_action('wp_after_admin_bar_render', array(&$this, 'render_menu'));
     
@@ -152,13 +153,9 @@ class Luna {
    * Start and/or recreate the session.
    */
   public function recreate_session() {
-    if (session_id()) {
-      session_destroy();
-      session_start();
-    }
-    else {
-      session_start();
-    }
+    // if (!session_id()) {
+      // session_start();
+    // }
   }
 
   /**
@@ -196,7 +193,7 @@ class Luna {
     $rows_to_display = get_option(LUNA_SHORTNAME . 'rows_to_display');
     $query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}luna ORDER BY `time` DESC LIMIT 0, %d", array($rows_to_display));
     $logs = $wpdb->get_results($query);
-    luna_get_view('luna');
+    luna_get_view('navbar.logs');
   }
 
   /**
@@ -214,7 +211,25 @@ class Luna {
     return '';
   }
 
+  /**
+   * Show flash messages in admin area.
+   */
+  public function admin_notices() {
+    luna_log($_SESSION['luna_admin_messages']);
+    // Check if there are any messages to be displayed.
+    if (isset($_SESSION['luna_admin_messages']) && is_array($_SESSION['luna_admin_messages'])) {
+      $messages_group = $_SESSION['luna_admin_messages'];
+      foreach ($messages_group as $class => $messages) {
+        foreach ($messages as $message) {
+          luna_get_view('admin.notice', array('class' => $class, 'message' => $message));
+        }
+      }
+    }
+    // Remove all messages from session.
+    unset($_SESSION['luna_admin_messages']);
+  }
+
 }
 
-// Initiate our plugin.
+// Initiate the plugin.
 new Luna();
