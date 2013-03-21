@@ -68,6 +68,7 @@ endif;
 /**
  * Log output to the database.
  */
+if (!function_exists('custom_debug_watchdog')):
 function custom_debug_watchdog($output, $type = 'log') {
   global $wpdb;
   $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}custom_debug (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
@@ -77,6 +78,7 @@ function custom_debug_watchdog($output, $type = 'log') {
   ));
   $wpdb->query($query);
 }
+endif;
 
 /**
  * Check if an option exists in the database.
@@ -87,9 +89,11 @@ function custom_debug_watchdog($output, $type = 'log') {
  * FALSE, the response will be the same as if the value does not exist in the
  * database at all.
  */
+if (!function_exists('custom_debug_option_exists')):
 function custom_debug_option_exists($option_name) {
   global $wpdb;
   $query = $wpdb->prepare("SELECT `option_id` FROM $wpdb->options WHERE `option_name` = '%s'", array($option_name));
 
   return $wpdb->get_var($query);
 }
+endif;
