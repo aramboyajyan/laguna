@@ -75,6 +75,9 @@ function custom_debug_watchdog($output, $type = 'log') {
   if (is_array($output) || is_object($output)) {
     $output = print_r($output, TRUE);
   }
+  // For ease of use and further processing, $log name has to be lowercase and
+  // without spaces or any special characters. Make sure the format is proper.
+  $type = preg_replace('/[^A-Za-z0-9]_-/', '', $type);
   // Log the event.
   $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}custom_debug (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
     current_time('timestamp'),
@@ -112,9 +115,11 @@ function custom_debug_get_log_types() {
   // Default type.
   $types_list = array(CUSTOM_DEBUG_DEFAULT_LOG_TYPE);
   $query = $wpdb->prepare("SELECT `type` FROM {$wpdb->prefix}custom_debug WHERE `type` != '%s' GROUP BY `type` ORDER BY `type` ASC", array(CUSTOM_DEBUG_DEFAULT_LOG_TYPE));
-  $types = $wpdb->get_results($query());
+  $types = $wpdb->get_results($query);
   foreach ($types as $type) {
     $types_list[] = $type->type;
   }
+
+  return $types_list;
 }
 endif;
