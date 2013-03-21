@@ -24,7 +24,7 @@ require dirname(__FILE__) . '/includes/constants.php';
 
 // Helper functions.
 require dirname(__FILE__) . '/includes/helper.common.php';
-require dirname(__FILE__) . '/includes/helper.custom.php';
+require dirname(__FILE__) . '/includes/helper.form.php';
 
 // Log items table class.
 require dirname(__FILE__) . '/includes/class.logs.php';
@@ -57,6 +57,15 @@ class Custom_Debug {
 
     // Registers.
     register_activation_hook(__FILE__, array(&$this, 'install'));
+
+    // Filters.
+    // Change message displayed upon unsuccessful user login. This is a
+    // security measure to prevent potential attackers find out which part of
+    // the credentials are not correct. The callback function will display a
+    // configurable generic message to the user.
+    if (get_option(CUSTOM_DEBUG_SHORTNAME . 'login_errors_enabled')) {
+      add_filter('login_errors', array(&$this, 'login_errors'));
+    }
   }
 
   /**
@@ -85,8 +94,26 @@ class Custom_Debug {
       dbDelta($table_custom_debug);
     }
     
-    // Setup default values of the variables.
-    add_option(CUSTOM_DEBUG_SHORTNAME . 'rows_to_display', '15');
+    /**
+     * Setup default values of the variables.
+     *
+     * The reason we are double checking if the value is set, is to prevent
+     * overwriting the settings when the plugin is already installed and is
+     * just disabled and enabled again.
+     */
+    // Number of rows to be displayed.
+    if (!custom_debug_option_exists('rows_to_display')) {
+      add_option(CUSTOM_DEBUG_SHORTNAME . 'rows_to_display', '15');
+    }
+    // Enable by default the login errors override. If necessary this can be
+    // changed from admin panel.
+    if (!custom_debug_option_exists('login_errors_enabled')) {
+      add_option(CUSTOM_DEBUG_SHORTNAME . 'login_errors_enabled', TRUE);
+    }
+    // Default text displayed on unsuccessful login.
+    if (!custom_debug_option_exists('login_error_text')) {
+      add_option(CUSTOM_DEBUG_SHORTNAME . 'login_error_text', 'Username and/or password is incorrect. Please try again.');
+    }
 
   }
 
@@ -110,6 +137,7 @@ class Custom_Debug {
     // Admin styles.
     wp_enqueue_style($this->namespace . '-style-admin', plugins_url($this->namespace . '/assets/css/admin.css'));
     wp_enqueue_style('thickbox');
+
     // Admin scripts.
     wp_enqueue_script($this->namespace . '-script-admin', plugins_url($this->namespace . '/assets/js/admin.js'), array('jquery'));
     wp_enqueue_script('media-upload');
@@ -165,6 +193,11 @@ class Custom_Debug {
     $query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}custom_debug ORDER BY `time` DESC LIMIT 0, %d", array($rows_to_display));
     $logs = $wpdb->get_results($query);
     custom_debug_get_view('custom-debug');
+  }
+
+  public function login_errors() {
+    $login_error_text = get_option(CUSTOM_DEBUG_SHORTNAME . 'login_error_text');
+    return __($login_error_text);
   }
 
 }

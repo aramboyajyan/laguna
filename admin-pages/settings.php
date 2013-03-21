@@ -14,7 +14,7 @@ $page = array(
   'fieldset' => array(
     
     /**
-     * General admin settings.
+     * Logging settings.
      */
     array(
       'title' => __('Debugging information on front end'),
@@ -36,8 +36,39 @@ $page = array(
         ),
       ),
     ),
-    // General admin settings end.
+    // Logging settings end.
     
+    /**
+     * General settings.
+     */
+    array(
+      'title' => __('General settings'),
+      'fields' => array(
+        // Tab one content.
+        array(
+          'id' => 'login_errors_enabled',
+          'type' => 'checkbox',
+          'label' => __('Override login errors'),
+          'help' => __('By default, WordPress tells the user which part of login information is incorrect. This is a potential security issue and it is better to replace that text with a generic error message. By enabling this feature, the message can be customized in the textarea below.'),
+          'value' => get_option(CUSTOM_DEBUG_SHORTNAME . 'login_errors_enabled'),
+        ),
+        array(
+          'id' => 'login_error_text',
+          'type' => 'textarea',
+          'label' => __('Error text'),
+          'help' => __('This text will be displayed instead of default WordPress error messages on unsuccessful user login.'),
+          'value' => get_option(CUSTOM_DEBUG_SHORTNAME . 'login_error_text'),
+        ),
+        array(
+          'id' => 'submit_email_general',
+          'class' => 'last',
+          'type' => 'submit',
+          'value' => __('Save settings'),
+        ),
+      ),
+    ),
+    // General settings end.
+
   ),
 );
 custom_debug_generate_admin_page($page);
