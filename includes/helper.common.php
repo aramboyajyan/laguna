@@ -140,6 +140,7 @@ endif;
  * Delete all saved logs from the database. Optionally delete all logs of a
  * specific type.
  */
+if (!function_exists('custom_debug_delete_all_logs')):
 function custom_debug_delete_all_logs($type = FALSE) {
   global $wpdb;
   // Delete all logs of a specific type.
@@ -151,3 +152,15 @@ function custom_debug_delete_all_logs($type = FALSE) {
   }
   $wpdb->query($query);
 }
+endif;
+
+/**
+ * Get path to an options page.
+ */
+if (!function_exists('custom_debug_options_page_path')):
+function custom_debug_options_page_path($page, $absolute = TRUE) {
+  $options_page = '/wp-admin/admin.php?page=custom_debug/admin-pages/' . $page . '.php';
+  
+  return $absolute ? get_site_url() . $options_page : $options_page;
+}
+endif;
