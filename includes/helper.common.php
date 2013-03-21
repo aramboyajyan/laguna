@@ -77,3 +77,19 @@ function custom_debug_watchdog($output, $type = 'log') {
   ));
   $wpdb->query($query);
 }
+
+/**
+ * Check if an option exists in the database.
+ *
+ * This is used for reactivating the plugin and avoiding to rewrite existing
+ * settings on the site. The reason regular get_option() won't work properly
+ * in this case is when you have booleans as values - if the value is set to
+ * FALSE, the response will be the same as if the value does not exist in the
+ * database at all.
+ */
+function custom_debug_option_exists($option_name) {
+  global $wpdb;
+  $query = $wpdb->prepare("SELECT `option_id` FROM $wpdb->options WHERE `option_name` = '%s'", array($option_name));
+
+  return $wpdb->get_var($query);
+}
