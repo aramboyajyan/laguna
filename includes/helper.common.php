@@ -28,7 +28,7 @@ endif;
  */
 if (!function_exists('custom_debug_get_view')):
 function custom_debug_get_view($view) {
-  include(plugin_dir_path(__FILE__) . '/../views/' . $view . '.php');
+  require plugin_dir_path(__FILE__) . '/../views/' . $view . '.php';
 }
 endif;
 
@@ -100,5 +100,21 @@ function custom_debug_option_exists($option_name) {
   $query = $wpdb->prepare("SELECT `option_id` FROM $wpdb->options WHERE `option_name` = '%s'", array($option_name));
 
   return $wpdb->get_var($query);
+}
+endif;
+
+/**
+ * Get all types of logs that exist in the database.
+ */
+if (!function_exists('custom_debug_get_log_types')):
+function custom_debug_get_log_types() {
+  global $wpdb;
+  // Default type.
+  $types_list = array(CUSTOM_DEBUG_DEFAULT_LOG_TYPE);
+  $query = $wpdb->prepare("SELECT `type` FROM {$wpdb->prefix}custom_debug WHERE `type` != '%s' GROUP BY `type` ORDER BY `type` ASC", array(CUSTOM_DEBUG_DEFAULT_LOG_TYPE));
+  $types = $wpdb->get_results($query());
+  foreach ($types as $type) {
+    $types_list[] = $type->type;
+  }
 }
 endif;
