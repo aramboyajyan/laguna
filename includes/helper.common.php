@@ -135,3 +135,19 @@ function custom_debug_get_log_types() {
   return $types_list;
 }
 endif;
+
+/**
+ * Delete all saved logs from the database. Optionally delete all logs of a
+ * specific type.
+ */
+function custom_debug_delete_all_logs($type = FALSE) {
+  global $wpdb;
+  // Delete all logs of a specific type.
+  if ($type) {
+    $query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}custom_debug WHERE `type` = '%s'", array($type));
+  }
+  else {
+    $query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}custom_debug");
+  }
+  $wpdb->query($query);
+}
