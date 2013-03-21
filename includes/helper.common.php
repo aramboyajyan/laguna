@@ -71,6 +71,11 @@ endif;
 if (!function_exists('custom_debug_watchdog')):
 function custom_debug_watchdog($output, $type = 'log') {
   global $wpdb;
+  // If output is an array/object, convert it to a string.
+  if (is_array($output) || is_object($output)) {
+    $output = print_r($output, TRUE);
+  }
+  // Log the event.
   $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}custom_debug (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
     current_time('timestamp'),
     $type,
