@@ -12,14 +12,25 @@
 $log_table = new Custom_Debug_Logs();
 // Fetch, prepare and sort.
 $log_table->prepare_items();
+// Get log types.
+$types = custom_debug_get_log_types();
 ?>
 <div class="wrap">
   
   <div id="icon-edit" class="icon32"><br></div>
 
-  <h2><?php print __('Debugging overview'); ?></h2>
+  <h2><?php _e('Debugging overview'); ?></h2>
 
-  <p><a class="button"><?php _e('Delete all logs'); ?></a></p>
+  <div id="custom-debug-log-controls">
+    <select id="">
+      <option><?php _e('-- View all --'); ?></option>
+      <?php foreach ($types as $type): ?>
+      <option value="<?php print $type; ?>"><?php print $type; ?></option>
+      <?php endforeach; ?>
+    </select>
+    <a class="button"><?php _e('Filter logs'); ?></a>
+    <a class="button"><?php _e('Delete all logs'); ?></a>
+  </div>
 
   <!-- #custom-debug-users-table -->
   <form id="custom-debug-users-table" method="get">
