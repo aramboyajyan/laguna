@@ -100,11 +100,6 @@ class Custom_Debug {
     // Front-end scripts.
     wp_enqueue_script($this->namespace . '-script', plugins_url($this->namespace . '/assets/js/front.js'), array('jquery'));
     
-    // Hook our cron.
-    if (!wp_next_scheduled($this->namespace . '_execute_cron')) {
-      wp_schedule_event(current_time('timestamp'), 'every_minute', $this->namespace . '_execute_cron');
-    }
-
   }
 
   /**
@@ -169,7 +164,7 @@ class Custom_Debug {
     $rows_to_display = get_option(CUSTOM_DEBUG_SHORTNAME . 'rows_to_display');
     $query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}custom_debug ORDER BY `time` DESC LIMIT 0, %d", array($rows_to_display));
     $logs = $wpdb->get_results($query);
-    boilerplate_get_view('custom-debug');
+    custom_debug_get_view('custom-debug');
   }
 
 }

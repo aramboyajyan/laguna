@@ -69,7 +69,7 @@ function custom_debug_field($field, $print = TRUE, $admin_page = FALSE) {
 
     case 'radios':
       $count = 0;
-      $output .= '<div class="boilerplate-radios-wrapper">';
+      $output .= '<div class="custom-debug-radios-wrapper">';
       foreach ($field['options'] as $value => $label) {
         $selected = ($field['value'] == $value) ? ' checked="checked"' : '';
         $output .= '<label>';
@@ -90,7 +90,7 @@ function custom_debug_field($field, $print = TRUE, $admin_page = FALSE) {
       }
       $output .= '</div>';
       $output .= '<input type="text" id="' . $field['id'] . '" name="' . $field['id'] . '" value="' . $field['value'] . '" />';
-      $output .= '<a class="boilerplate-uploader button">' . __('Upload image') . '</a>';
+      $output .= '<a class="custom-debug-uploader button">' . __('Upload image') . '</a>';
       break;
 
     case 'checkbox':
@@ -130,7 +130,7 @@ endif;
 if (!function_exists('custom_debug_generate_admin_page')):
 function custom_debug_generate_admin_page($page) {
   // Wrap everything for styling.
-  $output  = '<div id="boilerplate-admin-page"><div class="wrap">';
+  $output  = '<div id="custom-debug-admin-page"><div class="wrap">';
   // Page title and tabs.
   $output .= '<h2>' . $page['title'] . '</h2>';
   // Page description.
@@ -142,13 +142,13 @@ function custom_debug_generate_admin_page($page) {
   // Page fields.
   if (isset($page['fieldset'])) {
     foreach ($page['fieldset'] as $fieldset) {
-      $output .= '<div class="boilerplate-fieldset-div metabox-holder">';
+      $output .= '<div class="custom-debug-fieldset-div metabox-holder">';
       $output .= '<div class="postbox">';
       $output .= '<h3><span>' . $fieldset['title'];
       if (count($fieldset['tabs'])) {
-        $output .= '<div class="boilerplate-tabs">';
+        $output .= '<div class="custom-debug-tabs">';
         foreach ($fieldset['tabs'] as $tab) {
-          $output .= '<a class="boilerplate-tab-trigger" rel="' . $tab['trigger'] . '">' . $tab['title'] . '</a>';
+          $output .= '<a class="custom-debug-tab-trigger" rel="' . $tab['trigger'] . '">' . $tab['title'] . '</a>';
         }
         $output .= '</div>';
       }

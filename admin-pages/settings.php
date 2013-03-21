@@ -7,7 +7,7 @@
  * Created by: Topsitemakers
  * http://www.topsitemakers.com/
  */
-boilerplate_admin_page_save_handle();
+custom_debug_admin_page_save_handle();
 $page = array(
   'title' => __('Custom debugging options'),
   'form' => TRUE,
@@ -40,4 +40,4 @@ $page = array(
     
   ),
 );
-boilerplate_generate_admin_page($page);
+custom_debug_generate_admin_page($page);
