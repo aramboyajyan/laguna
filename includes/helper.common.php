@@ -27,8 +27,20 @@ endif;
  * Include ("render") a view.
  */
 if (!function_exists('custom_debug_get_view')):
-function custom_debug_get_view($view) {
+function custom_debug_get_view($view, $variables = array(), $return = FALSE) {
+  if (is_array($variables) && count($variables)) {
+    extract($variables);
+  }
+  // Get the view content.
+  ob_start();
   require plugin_dir_path(__FILE__) . '/../views/' . $view . '.php';
+  $output = ob_get_contents();
+  ob_end_clean();
+  // Print it out or return the value.
+  if ($return) {
+    return $output;
+  }
+  print $output;
 }
 endif;
 
