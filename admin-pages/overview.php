@@ -12,8 +12,6 @@
 $log_table = new Custom_Debug_Logs();
 // Fetch, prepare and sort.
 $log_table->prepare_items();
-// Get log types.
-$types = custom_debug_get_log_types();
 ?>
 <div class="wrap">
   

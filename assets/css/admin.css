@@ -123,4 +123,9 @@
 #custom-debug-admin-page .custom-debug-fieldset-div h3 {
   cursor: default;
 }
+/* Space out the wrapper for custom controls in table header. */
+#custom-debug-table-header {
+  padding: 3px 8px 0 0;
+  float: left;
+}
 /* Various other styles end */

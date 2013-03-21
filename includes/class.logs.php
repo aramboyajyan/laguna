@@ -65,6 +65,13 @@ class Custom_Debug_Logs extends WP_List_Table {
   }
   
   /**
+   * Message displayed to the admin when there are no results.
+   */
+  public function no_items() {
+    return __('There are no logs in the database at the moment.');
+  }
+
+  /**
    * Prepare the data.
    */
   public function prepare_items() {
@@ -138,12 +145,22 @@ class Custom_Debug_Logs extends WP_List_Table {
   public function extra_tablenav($which) {
     switch ($which) {
       case 'top':
-        custom_debug_get_view('admin.filter-logs');
+        $delete_logs_url = admin_url() . 'admin.php?page=custom_debug/admin-pages/overview.php&delete=1';
+        custom_debug_get_view('admin.filter-logs', array('delete_logs_url' => $delete_logs_url));
         break;
 
       case 'bottom':
         break;
     }
+  }
+
+  /**
+   * Bulk actions available in the top left of the header table.
+   */
+  public function get_bulk_actions() {
+    $actions = custom_debug_get_log_types();
+
+    return $actions;
   }
 
 }

@@ -1,8 +1,5 @@
-<select id="custom-debug-filter-logs">
-  <option><?php _e('-- View all --'); ?></option>
-  <?php foreach ($types as $type): ?>
-  <option value="<?php print $type; ?>"><?php print $type; ?></option>
-  <?php endforeach; ?>
-</select>
-<a class="button"><?php _e('Filter logs'); ?></a>
-<a class="button"><?php _e('Delete all logs'); ?></a>
+<div id="custom-debug-table-header">
+  <a href="<?php print $delete_logs_url; ?>" class="button" onclick="return confirm('<?php _e('Are you sure you want to delete all logs?'); ?>');">
+    <?php _e('Delete all logs'); ?>
+  </a>
+</div>
