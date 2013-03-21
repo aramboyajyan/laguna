@@ -132,4 +132,18 @@ class Custom_Debug_Logs extends WP_List_Table {
     ));
   }
   
+  /**
+   * Add extra information to the header/footer of the list table.
+   */
+  public function extra_tablenav($which) {
+    switch ($which) {
+      case 'top':
+        custom_debug_get_view('admin.filter-logs');
+        break;
+
+      case 'bottom':
+        break;
+    }
+  }
+
 }
