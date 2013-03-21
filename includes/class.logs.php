@@ -17,7 +17,7 @@ class Custom_Debug_Logs extends WP_List_Table {
   /**
    * Construct function.
    */
-  function __construct() {
+  public function __construct() {
     global $status;
     global $page;
     // Set parent defaults.
@@ -31,7 +31,7 @@ class Custom_Debug_Logs extends WP_List_Table {
   /**
    * Define column methods.
    */
-  function column_default($item, $column_name) {
+  public function column_default($item, $column_name) {
     switch ($column_name) {
       case 'time':
       case 'type':
@@ -46,7 +46,7 @@ class Custom_Debug_Logs extends WP_List_Table {
   /**
    * Define columns.
    */
-  function get_columns() {
+  public function get_columns() {
     return array(
       'time'   => __('Time'),
       'type'   => __('Type'),
@@ -57,7 +57,7 @@ class Custom_Debug_Logs extends WP_List_Table {
   /**
    * Sortable settings.
    */
-  function get_sortable_columns() {
+  public function get_sortable_columns() {
     return array(
       'time' => array('time', TRUE),
       'type' => array('type', FALSE),
@@ -67,7 +67,7 @@ class Custom_Debug_Logs extends WP_List_Table {
   /**
    * Prepare the data.
    */
-  function prepare_items() {
+  public function prepare_items() {
     
     // Number of items per page.
     $per_page = 25;
