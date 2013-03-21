@@ -6,6 +6,10 @@ Plugin to be used for custom development. Allows developers to log any informati
 
 To be added later.
 
+### Todo
+
+- move form elements to separate views
+
 ### Other
 
 Based on the [Topsitemakers WordPress custom plugin boilerplate](https://github.com/topsitemakers/wordpresspluginoopboilerplate).
