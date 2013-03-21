@@ -42,19 +42,19 @@ class Custom_Debug {
    * Constructor.
    */
   function __construct() {
-    // Localization.
-    load_plugin_textdomain($this->namespace . '-locale', FALSE, dirname(plugin_basename(__FILE__)) . '/lang');
     // Actions.
     add_action('init', array(&$this, 'init'));
     add_action('admin_init', array(&$this, 'admin_init'));
     add_action('admin_menu', array(&$this, 'admin_menu'));
     add_action('admin_bar_menu', array(&$this, 'admin_bar_menu'));
     add_action('wp_after_admin_bar_render', array(&$this, 'render_menu'));
+    
     // Actions used for recreating the session. Make sure the callback for
     // recreating the session is called last upon login/logout.
     add_action('init', array(&$this, 'recreate_session'));
     add_action('wp_login', array(&$this, 'recreate_session'), 100);
     add_action('wp_logout', array(&$this, 'recreate_session'), 100);
+
     // Registers.
     register_activation_hook(__FILE__, array(&$this, 'install'));
   }
