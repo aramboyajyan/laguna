@@ -11,10 +11,10 @@
 /*****************************************************************************
  * Logs table in navbar
  ****************************************************************************/
-#wp-admin-bar-luna > div {
+#wp-admin-bar-laguna > div {
   cursor: pointer;
 }
-#luna-logs-wrap {
+#laguna-logs-wrap {
   position: fixed;
   top: 28px;
   left: 0;
@@ -23,10 +23,10 @@
   z-index: 100;
   color: #FFF;
 }
-#luna-logs-table-navbar th {
+#laguna-logs-table-navbar th {
   background: #333333;
 }
-#luna-logs-table-navbar {
+#laguna-logs-table-navbar {
   width: 100%;
 }
 /* Logs table in navbar end */
@@ -35,10 +35,10 @@
 /*****************************************************************************
  * Logs table page in admin
  ****************************************************************************/
-#luna-logs-table-admin th#time {
+#laguna-logs-table-admin th#time {
   width: 200px;
 }
-#luna-logs-table-admin th#type {
+#laguna-logs-table-admin th#type {
   width: 120px;
 }
 /* Logs table page in admin end */

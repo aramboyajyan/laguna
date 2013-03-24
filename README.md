@@ -1,6 +1,8 @@
-# Luna WordPress framework for custom plugin development
+# Laguna WordPress framework for custom plugin development
 
-Custom plugin framework that contains many parts WordPress is missing for proper coding of custom plugins. Logging, custom admin pages, several security measures, view rendering, flash messaging and more.
+Custom plugin framework that contains many parts WordPress is missing for
+proper coding of custom plugins. Logging, custom admin pages, several security
+measures, view rendering, flash messaging and more.
 
 ### Installation and Usage
 

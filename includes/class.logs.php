@@ -12,7 +12,7 @@
 if(!class_exists('WP_List_Table')) require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 
 // Plugin class.
-class Luna_Logs extends WP_List_Table {
+class Laguna_Logs extends WP_List_Table {
   
   /**
    * Construct function.
@@ -100,11 +100,11 @@ class Luna_Logs extends WP_List_Table {
       $order = strtoupper($_GET['order']);
     }
     // Get the data.
-    $data  = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}luna ORDER BY `{$orderby}` {$order}", array()), ARRAY_A);
+    $data  = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}laguna ORDER BY `{$orderby}` {$order}", array()), ARRAY_A);
 
     foreach ($data as $id => $log) {
       // Construct sample action links.
-      $format = get_option(LUNA_SHORTNAME . 'date_format');
+      $format = get_option(LAGUNA_SHORTNAME . 'date_format');
       $data[$id]['time'] = date($format, $log['time']);
     }
 
@@ -146,8 +146,8 @@ class Luna_Logs extends WP_List_Table {
   public function extra_tablenav($which) {
     switch ($which) {
       case 'top':
-        $delete_logs_url = admin_url() . 'admin.php?page=luna/admin-pages/overview.php&delete=1';
-        luna_get_view('admin.filter-logs', array('delete_logs_url' => $delete_logs_url));
+        $delete_logs_url = admin_url() . 'admin.php?page=laguna/admin-pages/overview.php&delete=1';
+        laguna_get_view('admin.filter-logs', array('delete_logs_url' => $delete_logs_url));
         break;
 
       case 'bottom':
@@ -159,7 +159,7 @@ class Luna_Logs extends WP_List_Table {
    * Bulk actions available in the top left of the header table.
    */
   public function get_bulk_actions() {
-    $actions = luna_get_log_types();
+    $actions = laguna_get_log_types();
 
     return $actions;
   }
