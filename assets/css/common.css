@@ -114,6 +114,12 @@
 #laguna-logs-table-navbar {
   width: 100%;
 }
+#laguna-navbar-column-time {
+  width: 160px;
+}
+#laguna-navbar-column-type {
+  width: 160px;
+}
 /* Logs table in navbar end */
 
 

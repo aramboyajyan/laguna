@@ -9,9 +9,9 @@
     <table>
 
       <thead>
-        <th><?php print __('Time'); ?></th>
-        <th><?php print __('Type'); ?></th>
-        <th><?php print __('Output'); ?></th>
+        <th id="laguna-navbar-column-time"><?php print __('Time'); ?></th>
+        <th id="laguna-navbar-column-type"><?php print __('Type'); ?></th>
+        <th id="laguna-navbar-column-output"><?php print __('Output'); ?></th>
       </thead>
 
       <tfoot>
