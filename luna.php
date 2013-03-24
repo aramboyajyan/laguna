@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Debugging plugin for custom development.
+ * Plugin deverlopment framework for custom WordPress plugins.
  *
  * Plugin and custom plugin framework created by: Topsitemakers.
  * http://www.topsitemakers.com/
@@ -119,6 +119,10 @@ class Luna {
     if (!luna_option_exists('login_error_text')) {
       add_option(LUNA_SHORTNAME . 'login_error_text', 'Username and/or password is incorrect. Please try again.');
     }
+    // Default date format.
+    if (!luna_option_exists('date_format')) {
+      add_option(LUNA_SHORTNAME . 'date_format', 'F d Y, H:i:s');
+    }
 
   }
 
@@ -193,7 +197,12 @@ class Luna {
     $rows_to_display = get_option(LUNA_SHORTNAME . 'rows_to_display');
     $query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}luna ORDER BY `time` DESC LIMIT 0, %d", array($rows_to_display));
     $logs = $wpdb->get_results($query);
-    luna_get_view('navbar.logs');
+    // Format the time in logs.
+    $format = get_option(LUNA_SHORTNAME . 'date_format');
+    foreach ($logs as $id => $log) {
+      $logs[$id]->time = date($format, $log->time);
+    }
+    luna_get_view('navbar.logs', array('logs' => $logs));
   }
 
   /**
@@ -215,7 +224,6 @@ class Luna {
    * Show flash messages in admin area.
    */
   public function admin_notices() {
-    luna_log($_SESSION['luna_admin_messages']);
     // Check if there are any messages to be displayed.
     if (isset($_SESSION['luna_admin_messages']) && is_array($_SESSION['luna_admin_messages'])) {
       $messages_group = $_SESSION['luna_admin_messages'];

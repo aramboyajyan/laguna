@@ -10,6 +10,8 @@ To be added later.
 
 - move form elements to separate views
 - possibly include functionality of login lockdown plugin
+- login logo functionality
+- enabling users to login with email/password
 
 ### Other
 

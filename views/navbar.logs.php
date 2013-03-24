@@ -1,5 +1,5 @@
-<!-- #luna-wrap -->
-<div id="luna-wrap" style="display: none;">
+<!-- #luna-logs-wrap -->
+<div id="luna-logs-wrap" style="display: none;">
 
   <?php if (count($logs)): ?>
 
@@ -32,4 +32,4 @@
   <?php endif; ?>
 
 </div>
-<!-- /#luna-wrap -->
+<!-- /#luna-logs-wrap -->

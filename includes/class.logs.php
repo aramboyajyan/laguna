@@ -104,7 +104,8 @@ class Luna_Logs extends WP_List_Table {
 
     foreach ($data as $id => $log) {
       // Construct sample action links.
-      $data[$id]['time'] = date('F d Y, H:i:s', $log['time']);
+      $format = get_option(LUNA_SHORTNAME . 'date_format');
+      $data[$id]['time'] = date($format, $log['time']);
     }
 
     /**

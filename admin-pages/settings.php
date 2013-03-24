@@ -19,7 +19,13 @@ $page = array(
     array(
       'title' => __('Debugging information on front end'),
       'fields' => array(
-        // Tab one content.
+        array(
+          'id' => 'date_format',
+          'type' => 'text',
+          'label' => __('Date format'),
+          'help' => __('Select the date format for logs displayed in the admin navbar and on settings page.'),
+          'value' => get_option(LUNA_SHORTNAME . 'date_format'),
+        ),
         array(
           'id' => 'rows_to_display',
           'type' => 'select',

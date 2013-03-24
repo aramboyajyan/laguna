@@ -9,12 +9,12 @@
 
 
 /*****************************************************************************
- * Various other elements
+ * Logs table in navbar
  ****************************************************************************/
 #wp-admin-bar-luna > div {
   cursor: pointer;
 }
-#luna-wrap {
+#luna-logs-wrap {
   position: fixed;
   top: 28px;
   left: 0;
@@ -23,19 +23,25 @@
   z-index: 100;
   color: #FFF;
 }
-#luna-wrap th {
+#luna-logs-table-navbar th {
   background: #333333;
 }
-#luna-wrap table {
+#luna-logs-table-navbar {
   width: 100%;
 }
-#luna-users-table th#time {
+/* Logs table in navbar end */
+
+
+/*****************************************************************************
+ * Logs table page in admin
+ ****************************************************************************/
+#luna-logs-table-admin th#time {
   width: 200px;
 }
-#luna-users-table th#type {
+#luna-logs-table-admin th#type {
   width: 120px;
 }
-/* Various other elements end */
+/* Logs table page in admin end */
 
 
 /*****************************************************************************

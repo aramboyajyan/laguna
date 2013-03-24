@@ -26,11 +26,11 @@ $log_table->prepare_items();
 
   <h2><?php _e('Debugging overview'); ?></h2>
 
-  <!-- #luna-users-table -->
-  <form id="luna-users-table" method="get">
+  <!-- #luna-logs-table -->
+  <form id="luna-logs-table" method="get">
     <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
     <?php $log_table->display() ?>
   </form>
-  <!-- /#luna-users-table -->
+  <!-- /#luna-logs-table -->
 
 </div>
