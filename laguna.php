@@ -81,7 +81,7 @@ class Laguna {
     global $wpdb;
     
     // Define table names.
-    $table_name_laguna   = $wpdb->prefix . 'laguna';
+    $table_name_laguna   = $wpdb->prefix . 'laguna_log';
     
     // Check if the tables already exist.
     if ($wpdb->get_var("SHOW TABLES LIKE '" . $table_name_laguna . "'") != $table_name_laguna) {
@@ -195,7 +195,7 @@ class Laguna {
     global $wpdb;
     // Get recent logs.
     $rows_to_display = get_option(LAGUNA_SHORTNAME . 'rows_to_display');
-    $query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}laguna ORDER BY `time` DESC LIMIT 0, %d", array($rows_to_display));
+    $query = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}laguna_log ORDER BY `time` DESC LIMIT 0, %d", array($rows_to_display));
     $logs = $wpdb->get_results($query);
     // Format the time in logs.
     $format = get_option(LAGUNA_SHORTNAME . 'date_format');

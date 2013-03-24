@@ -135,7 +135,7 @@ function laguna_get_log_types() {
   global $wpdb;
   // Default type.
   $types_list = array(LAGUNA_DEFAULT_LOG_TYPE);
-  $query = $wpdb->prepare("SELECT `type` FROM {$wpdb->prefix}laguna WHERE `type` != '%s' GROUP BY `type` ORDER BY `type` ASC", array(LAGUNA_DEFAULT_LOG_TYPE));
+  $query = $wpdb->prepare("SELECT `type` FROM {$wpdb->prefix}laguna_log WHERE `type` != '%s' GROUP BY `type` ORDER BY `type` ASC", array(LAGUNA_DEFAULT_LOG_TYPE));
   $types = $wpdb->get_results($query);
   foreach ($types as $type) {
     $types_list[] = $type->type;
@@ -154,10 +154,10 @@ function laguna_delete_all_logs($type = FALSE) {
   global $wpdb;
   // Delete all logs of a specific type.
   if ($type) {
-    $query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}laguna WHERE `type` = '%s'", array($type));
+    $query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}laguna_log WHERE `type` = '%s'", array($type));
   }
   else {
-    $query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}laguna");
+    $query = $wpdb->prepare("DELETE FROM {$wpdb->prefix}laguna_log");
   }
   $wpdb->query($query);
 }
