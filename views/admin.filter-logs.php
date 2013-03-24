@@ -1,7 +1,7 @@
 <div id="laguna-table-header">
 
   <select id="laguna-log-filters">
-    <option><?php _e('-- Please select --'); ?></option>
+    <option><?php _e('-- View all --'); ?></option>
     <?php foreach ($log_filters as $log_filter): ?>
     <option <?php print ($current_filter == $log_filter) ? 'selected="selected"' : ''; ?> value="<?php print $log_filter; ?>"><?php print $log_filter; ?></option>
     <?php endforeach; ?>
