@@ -19,20 +19,25 @@ if (!function_exists('laguna_field')):
 function laguna_field($field, $print = TRUE, $admin_page = FALSE) {
   // Wrap.
   $output  = '<div class="form-item ' . $field['class'] . '">';
+  
   // Label.
   if (isset($field['label'])) {
     $output .= '<label for="' . $field['id'] . '">' . $field['label'] . '</label>';
-  } else {
+  }
+  else {
     $output .= '<label class="spacer"></label>';
   }
+  
   // Field value - if it's admin field, fetch it with get_option()
   // "no-save" fields are not saved and can be used for one-time processing.
   if (!$field['no-save']) {
     $field['value'] = ($admin_page && $field['type'] != 'submit' && !$field['editor']) ? get_option(LAGUNA_SHORTNAME . $field['id']) : $field['value'];
   }
+
   // Field wrapper.
   $output .= '<div class="field">';
-  // Field.
+  
+  // Input field.
   switch ($field['type']) {
     case 'text':
       $output .= '<input type="text" id="' . $field['id'] . '" name="' . $field['id'] . '" value="' . $field['value'] . '" />';
@@ -105,12 +110,16 @@ function laguna_field($field, $print = TRUE, $admin_page = FALSE) {
       $output .= '<input class="button" type="submit" id="' . $field['id'] . '" value="' . $field['value'] . '" />';
       break;
   }
+
   // Help.
   if (isset($field['help'])) $output .= '<div class="help">' . $field['help'] . '</div>';
+
   // Close field wrapper.
   $output .= '</div>';
+
   // Close wrap.
   $output .= '</div>';
+
   return $print ? print $output : $output;
 }
 endif;
