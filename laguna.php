@@ -133,9 +133,9 @@ class Laguna {
   public function init() {
     
     // Common styles.
-    wp_enqueue_style($this->namespace . '-style', plugins_url($this->namespace . '/assets/css/common.css'));
+    wp_enqueue_style($this->namespace . '-style-common', plugins_url($this->namespace . '/assets/css/common.css'));
     // Common scripts.
-    wp_enqueue_script($this->namespace . '-script', plugins_url($this->namespace . '/assets/js/common.js'), array('jquery'));
+    wp_enqueue_script($this->namespace . '-script-common', plugins_url($this->namespace . '/assets/js/common.js'), array('jquery'));
     
   }
 
