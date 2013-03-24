@@ -11,7 +11,7 @@
 // Check if the logs should be deleted.
 if (isset($_GET['delete']) && $_GET['delete']) {
   laguna_delete_all_logs();
-  wp_redirect(laguna_options_page_path('overview'));
+  wp_redirect(laguna_options_page_path('view-log'));
   exit();
 }
 
@@ -24,7 +24,7 @@ $log_table->prepare_items();
   
   <div id="icon-edit" class="icon32"><br></div>
 
-  <h2><?php _e('Debugging overview'); ?></h2>
+  <h2><?php _e('Log records overview'); ?></h2>
 
   <!-- #laguna-logs-table -->
   <form id="laguna-logs-table" method="get">

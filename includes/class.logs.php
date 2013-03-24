@@ -146,7 +146,7 @@ class Laguna_Logs extends WP_List_Table {
   public function extra_tablenav($which) {
     switch ($which) {
       case 'top':
-        $delete_logs_url = admin_url() . 'admin.php?page=laguna/admin-pages/overview.php&delete=1';
+        $delete_logs_url = laguna_options_page_path('view-log') . '&delete=1';
         laguna_get_view('admin.filter-logs', array('delete_logs_url' => $delete_logs_url));
         break;
 
