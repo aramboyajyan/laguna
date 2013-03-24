@@ -17,11 +17,11 @@
       <tfoot>
         <tr>
           <td colspan="3">
-            <a href="<?php print $all_entries_url; ?>">
-              <?php _e('View all log entries'); ?> (<?php print $total_entries; ?>)
-            </a>
-            <a class="button" href="<?php print $delete_logs_url; ?>" onclick="return confirm('<?php _e('Are you sure you want to delete all logs?'); ?>');">
+            <a href="<?php print $delete_logs_url; ?>" onclick="return confirm('<?php _e('Are you sure you want to delete all logs?'); ?>');">
               <?php _e('Delete all logs'); ?>
+            </a>
+            <a class="button" href="<?php print $all_entries_url; ?>">
+              <?php _e('View all log entries'); ?> (<?php print $total_entries; ?>)
             </a>
           </td>
         </tr>
