@@ -94,6 +94,9 @@ function laguna_log($output, $type = 'log', $pre = FALSE) {
     $output = '<pre>' . $output . '</pre>';
   }
   
+  // Get users IP address.
+  $ip_address = laguna_get_ip_address();
+
   // For ease of use and further processing, $log name has to be lowercase and
   // without spaces or any special characters. Make sure the format is proper.
   $type = $type ? $type : 'log';
@@ -101,7 +104,8 @@ function laguna_log($output, $type = 'log', $pre = FALSE) {
   $type = preg_replace('/[^A-Za-z0-9_-]/', '', $type);
   
   // Log the event.
-  $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}laguna_log (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
+  $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}laguna_log (`ip_address`, `time`, `type`, `output`) VALUES ('%s', %d, '%s', '%s')", array(
+    $ip_address,
     current_time('timestamp'),
     $type,
     $output,
@@ -191,5 +195,18 @@ function laguna_display_message($message, $class = 'update') {
   // Add message to the list.
   $_SESSION['laguna_admin_messages'] = $messages;
   laguna_log($_SESSION['laguna_admin_messages']);
+}
+endif;
+
+/**
+ * Get user's IP address.
+ *
+ * The regex used in this function is exactly the same as the one used by
+ * WordPress to save user IP address on comment creation. For more
+ * information, see wp_new_comment() in /wp-content/comment.php file.
+ */
+if (!function_exists('laguna_get_ip_address')):
+function laguna_get_ip_address() {
+  return preg_replace('/[^0-9a-fA-F:., ]/', '',$_SERVER['REMOTE_ADDR']);
 }
 endif;

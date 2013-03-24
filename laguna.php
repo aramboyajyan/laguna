@@ -87,13 +87,14 @@ class Laguna {
     if ($wpdb->get_var("SHOW TABLES LIKE '" . $table_name_laguna . "'") != $table_name_laguna) {
       // Table SQL
       $table_laguna = "CREATE TABLE IF NOT EXISTS `{$table_name_laguna}` (
-                              `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key.',
-                              `time` int(11) NOT NULL COMMENT 'UNIX timestamp of when the event was logged.',
-                              `type` varchar(128) NOT NULL COMMENT 'Type of the logged message.',
-                              `output` text COMMENT 'Logged output.',
-                              PRIMARY KEY (`ID`)
-                            ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Debug logging for custom plugin development.' AUTO_INCREMENT=1 ;";
-      
+                        `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key.',
+                        `ip_address` varchar(100) NOT NULL COMMENT 'IP address of the computer who triggered the log entry.',
+                        `time` int(11) NOT NULL COMMENT 'UNIX timestamp of when the event was logged.',
+                        `type` varchar(128) NOT NULL COMMENT 'Type of the logged message.',
+                        `output` text COMMENT 'Logged output.',
+                        PRIMARY KEY (`ID`)
+                      ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Debug logging for custom plugin development.' AUTO_INCREMENT=1 ;";
+
       // Get the upgrade PHP and create the tables.
       require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
       dbDelta($table_laguna);
