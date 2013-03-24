@@ -203,7 +203,19 @@ class Laguna {
     foreach ($logs as $id => $log) {
       $logs[$id]->time = date($format, $log->time);
     }
-    laguna_get_view('navbar.logs', array('logs' => $logs));
+    // URL for the "See all entries" link.
+    $all_entries_url = laguna_options_page_path('view-log');
+    // URL for the "Delete all logs" button.
+    $delete_logs_url = $all_entries_url . '&delete=1';
+    // Count total number of log entries in the database.
+    $total_entries_query = $wpdb->prepare("SELECT COUNT(`ID`) FROM {$wpdb->prefix}laguna_log");
+    $total_entries   = $wpdb->get_var($total_entries_query);
+    laguna_get_view('navbar.logs', array(
+      'logs' => $logs,
+      'delete_logs_url' => $delete_logs_url,
+      'total_entries' => $total_entries,
+      'all_entries_url' => $all_entries_url,
+    ));
   }
 
   /**

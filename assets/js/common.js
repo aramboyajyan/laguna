@@ -9,10 +9,11 @@
 jQuery.noConflict();
 jQuery(document).ready(function($) {
 
-  var customDebugToggle = $('#wp-admin-bar-laguna'),
-      customDebugWrap   = $('#laguna-logs-wrap');
-  customDebugToggle.click(function() {
-    customDebugWrap.toggle();
-  }).toggleClass('active');
+  var lagunaLogToggle = $('#wp-admin-bar-laguna'),
+      lagunaLogWrap   = $('#laguna-logs-wrap');
+  lagunaLogToggle.click(function() {
+    lagunaLogWrap.toggle();
+    lagunaLogToggle.toggleClass('active');
+  });
 
 });
