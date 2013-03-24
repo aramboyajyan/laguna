@@ -100,7 +100,7 @@ class Laguna_Logs extends WP_List_Table {
       $order = strtoupper($_GET['order']);
     }
     // Get the data.
-    $data  = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}laguna ORDER BY `{$orderby}` {$order}", array()), ARRAY_A);
+    $data  = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}laguna_log ORDER BY `{$orderby}` {$order}", array()), ARRAY_A);
 
     foreach ($data as $id => $log) {
       // Construct sample action links.

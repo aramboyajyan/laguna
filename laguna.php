@@ -107,20 +107,20 @@ class Laguna {
      * just disabled and enabled again.
      */
     // Number of rows to be displayed.
-    if (!laguna_option_exists('rows_to_display')) {
+    if (!laguna_option_exists(LAGUNA_SHORTNAME . 'rows_to_display')) {
       add_option(LAGUNA_SHORTNAME . 'rows_to_display', '15');
     }
     // Enable by default the login errors override. If necessary this can be
     // changed from admin panel.
-    if (!laguna_option_exists('login_errors_enabled')) {
+    if (!laguna_option_exists(LAGUNA_SHORTNAME . 'login_errors_enabled')) {
       add_option(LAGUNA_SHORTNAME . 'login_errors_enabled', TRUE);
     }
     // Default text displayed on unsuccessful login.
-    if (!laguna_option_exists('login_error_text')) {
+    if (!laguna_option_exists(LAGUNA_SHORTNAME . 'login_error_text')) {
       add_option(LAGUNA_SHORTNAME . 'login_error_text', 'Username and/or password is incorrect. Please try again.');
     }
     // Default date format.
-    if (!laguna_option_exists('date_format')) {
+    if (!laguna_option_exists(LAGUNA_SHORTNAME . 'date_format')) {
       add_option(LAGUNA_SHORTNAME . 'date_format', 'F d Y, H:i:s');
     }
 

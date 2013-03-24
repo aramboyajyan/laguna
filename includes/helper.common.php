@@ -100,7 +100,7 @@ function laguna_log($output, $type = 'log', $pre = FALSE) {
   $type = preg_replace('/[^A-Za-z0-9]_-/', '', $type);
   
   // Log the event.
-  $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}laguna (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
+  $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}laguna_log (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
     current_time('timestamp'),
     $type,
     $output,

@@ -128,4 +128,11 @@
   padding: 3px 8px 0 0;
   float: left;
 }
+/* Log overview page columns */
+#laguna-logs-table th#time {
+  width: 180px;
+}
+#laguna-logs-table th#type {
+  width: 150px;
+}
 /* Various other styles end */
