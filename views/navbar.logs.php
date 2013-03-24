@@ -32,7 +32,7 @@
         <tr>
           <td><?php print $log->time; ?></td>
           <td><?php print $log->type; ?></td>
-          <td><?php print $log->output; ?></td>
+          <td><pre><?php print $log->output; ?></pre></td>
         </tr>
         <?php endforeach; ?>
       </tbody>

@@ -108,6 +108,9 @@ body.wp-admin #laguna-logs-wrap {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+#laguna-logs-wrap table pre {
+  margin: 0;
+}
 #laguna-logs-wrap .button {
   float: right;
 }
