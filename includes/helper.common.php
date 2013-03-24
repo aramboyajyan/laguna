@@ -81,7 +81,7 @@ endif;
  * Log output to the database.
  */
 if (!function_exists('laguna_log')):
-function laguna_log($output, $type = 'log', $pre = FALSE) {
+function laguna_log($output, $type = 'log') {
   global $wpdb;
   
   // If output is an array/object, convert it to a string.
@@ -89,11 +89,6 @@ function laguna_log($output, $type = 'log', $pre = FALSE) {
     $output = print_r($output, TRUE);
   }
 
-  // Wrap everything in <pre>tags</pre>.
-  if ($pre) {
-    $output = '<pre>' . $output . '</pre>';
-  }
-  
   // Get users IP address.
   $ip_address = laguna_get_ip_address();
 

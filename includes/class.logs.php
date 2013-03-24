@@ -106,6 +106,7 @@ class Laguna_Logs extends WP_List_Table {
       // Construct sample action links.
       $format = get_option(LAGUNA_SHORTNAME . 'date_format');
       $data[$id]['time'] = date($format, $log['time']);
+      $data[$id]['output'] = '<pre>' . $data[$id]['output'] . '</pre>';
     }
 
     /**
