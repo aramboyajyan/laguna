@@ -92,6 +92,7 @@ body.wp-admin #laguna-logs-wrap {
   border-top: 1px solid #FFF;
   border-bottom: 1px solid #dfdfdf;
   padding: 8px 10px;
+  text-align: left;
 }
 #laguna-logs-wrap tbody tr:hover {
   background: #ececec;
