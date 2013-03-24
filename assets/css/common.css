@@ -25,6 +25,7 @@
 }
 #laguna-logs-wrap {
   position: absolute;
+  top: 28px;
   left: 0;
   width: 100%;
   background: rgba(0, 0, 0, 0.7);
@@ -32,6 +33,9 @@
   color: #FFF;
   font-size: 13px;
   font-family: Arial;
+}
+body.wp-admin #laguna-logs-wrap {
+  top: 0;
 }
 #laguna-logs-wrap .button {
   background: #f3f3f3;
