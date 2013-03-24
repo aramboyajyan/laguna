@@ -128,14 +128,14 @@ class Laguna {
   }
 
   /**
-   * Front-end init.
+   * General init.
    */
   public function init() {
     
-    // Front-end styles.
-    wp_enqueue_style($this->namespace . '-style', plugins_url($this->namespace . '/assets/css/front.css'));
-    // Front-end scripts.
-    wp_enqueue_script($this->namespace . '-script', plugins_url($this->namespace . '/assets/js/front.js'), array('jquery'));
+    // Common styles.
+    wp_enqueue_style($this->namespace . '-style', plugins_url($this->namespace . '/assets/css/common.css'));
+    // Common scripts.
+    wp_enqueue_script($this->namespace . '-script', plugins_url($this->namespace . '/assets/js/common.js'), array('jquery'));
     
   }
 
