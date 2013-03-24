@@ -6,7 +6,7 @@
 
     <?php if (count($logs)): ?>
 
-    <table>
+    <table class="laguna-admin">
 
       <thead>
         <th id="laguna-navbar-column-time"><?php print __('Time'); ?></th>

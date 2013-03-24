@@ -42,4 +42,15 @@ jQuery(document).ready(function($) {
     }
   });
   
+  /**
+   * Filter logs button.
+   */
+  var lagunaFilterLogTrigger = $('#laguna-filter-trigger'),
+      lagunaFilterLogSelect  = $('#laguna-log-filters');
+  lagunaFilterLogTrigger.click(function() {
+    var selectedFilter = lagunaFilterLogSelect.find('option:selected').val();
+    window.location.href = lagunaFilterLogTrigger.attr('data-href') + selectedFilter;
+    return false;
+  });
+
 });

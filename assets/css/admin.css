@@ -143,4 +143,17 @@
 #laguna-logs-table td.column-output {
   word-wrap: break-word;
 }
+/* Log filters. */
+#laguna-log-filters {
+  float: left;
+  margin-top: 0;
+}
+#laguna-filter-trigger {
+  margin: 0 20px 0 5px;
+  float: left;
+}
+/* Remove empty padding to the left of filter controls. */
+#laguna-logs-table .tablenav .actions {
+  display: none;
+}
 /* Various other styles end */

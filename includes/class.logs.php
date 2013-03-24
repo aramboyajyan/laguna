@@ -99,8 +99,15 @@ class Laguna_Logs extends WP_List_Table {
     if (isset($_GET['order']) && in_array($_GET['order'], array('asc', 'desc'))) {
       $order = strtoupper($_GET['order']);
     }
+
     // Get the data.
-    $data  = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}laguna_log ORDER BY `{$orderby}` {$order}", array()), ARRAY_A);
+    $filter = $this->laguna_current_filter();
+    if (!empty($filter)) {
+      $data = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}laguna_log WHERE `type` = '%s' ORDER BY `{$orderby}` {$order}", array($filter)), ARRAY_A);
+    }
+    else {
+      $data = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}laguna_log ORDER BY `{$orderby}` {$order}", array()), ARRAY_A);
+    }
 
     foreach ($data as $id => $log) {
       // Construct sample action links.
@@ -142,27 +149,43 @@ class Laguna_Logs extends WP_List_Table {
   }
   
   /**
+   * Override default table stylesheet classes.
+   */
+  public function get_table_classes() {
+    return array('wp-list-table', 'widefat', 'fixed', 'logs', 'laguna-admin');
+  }
+
+  /**
+   * Custom method: gets currently selected log filter.
+   */
+  public function laguna_current_filter() {
+    $filter = '';
+    $valid_filters = laguna_get_log_types();
+    if (isset($_GET['filter']) && in_array($_GET['filter'], $valid_filters)) {
+      $filter = $_GET['filter'];
+    }
+
+    return $filter;
+  }
+
+  /**
    * Add extra information to the header/footer of the list table.
    */
   public function extra_tablenav($which) {
     switch ($which) {
       case 'top':
-        $delete_logs_url = laguna_options_page_path('view-log') . '&delete=1';
-        laguna_get_view('admin.filter-logs', array('delete_logs_url' => $delete_logs_url));
+        $view_log_page = laguna_options_page_path('view-log');
+        laguna_get_view('admin.filter-logs', array(
+          'delete_logs_url' => $view_log_page . '&delete=1',
+          'log_filters'     => laguna_get_log_types(),
+          'current_filter'  => $this->laguna_current_filter(),
+          'filter_logs_url' => $view_log_page . '&filter=',
+        ));
         break;
 
       case 'bottom':
         break;
     }
-  }
-
-  /**
-   * Bulk actions available in the top left of the header table.
-   */
-  public function get_bulk_actions() {
-    $actions = laguna_get_log_types();
-
-    return $actions;
   }
 
 }
