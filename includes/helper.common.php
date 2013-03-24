@@ -97,7 +97,8 @@ function laguna_log($output, $type = 'log', $pre = FALSE) {
   // For ease of use and further processing, $log name has to be lowercase and
   // without spaces or any special characters. Make sure the format is proper.
   $type = $type ? $type : 'log';
-  $type = preg_replace('/[^A-Za-z0-9]_-/', '', $type);
+  $type = str_replace(' ', '_', strtolower($type));
+  $type = preg_replace('/[^A-Za-z0-9_-]/', '', $type);
   
   // Log the event.
   $query = $wpdb->prepare("INSERT INTO {$wpdb->prefix}laguna_log (`time`, `type`, `output`) VALUES (%d, '%s', '%s')", array(
