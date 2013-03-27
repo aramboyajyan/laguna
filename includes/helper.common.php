@@ -183,9 +183,9 @@ function laguna_display_message($message, $class = 'update') {
   if (isset($_SESSION['laguna_admin_messages']) && is_array($_SESSION['laguna_admin_messages'])) {
     $messages = $_SESSION['laguna_admin_messages'];
   }
-  // Make sure to pass TRUE as the last argument for laguna_get_view() function;
-  // that will return the output of the view instead of printing it out to the
-  // screen.
+  // Make sure to pass TRUE as the last argument for laguna_get_view()
+  // function; that will return the output of the view instead of printing it
+  // out to the screen.
   $messages[$class][] = $message;
   // Add message to the list.
   $_SESSION['laguna_admin_messages'] = $messages;
@@ -198,7 +198,7 @@ endif;
  *
  * The regex used in this function is exactly the same as the one used by
  * WordPress to save user IP address on comment creation. For more
- * information, see wp_new_comment() in /wp-content/comment.php file.
+ * information, see wp_new_comment() function in /wp-content/comment.php file.
  */
 if (!function_exists('laguna_get_ip_address')):
 function laguna_get_ip_address() {
