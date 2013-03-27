@@ -90,7 +90,7 @@ function laguna_log($output, $type = 'log') {
   }
 
   // Get users IP address.
-  $ip_address = laguna_get_ip_address();
+  $ip_address = laguna_get_user_ip_address();
 
   // For ease of use and further processing, $log name has to be lowercase and
   // without spaces or any special characters. Make sure the format is proper.
@@ -200,8 +200,8 @@ endif;
  * WordPress to save user IP address on comment creation. For more
  * information, see wp_new_comment() function in /wp-content/comment.php file.
  */
-if (!function_exists('laguna_get_ip_address')):
-function laguna_get_ip_address() {
+if (!function_exists('laguna_get_user_ip_address')):
+function laguna_get_user_ip_address() {
   return preg_replace('/[^0-9a-fA-F:., ]/', '',$_SERVER['REMOTE_ADDR']);
 }
 endif;
