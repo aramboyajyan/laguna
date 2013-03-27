@@ -205,3 +205,26 @@ function laguna_get_ip_address() {
   return preg_replace('/[^0-9a-fA-F:., ]/', '',$_SERVER['REMOTE_ADDR']);
 }
 endif;
+
+/**
+ * Unpublish a post.
+ *
+ * This will change post status directly in the database and will not trigger
+ * any other action. For unpublishing *and* updating post, use
+ * laguna_unpublish_resave_post().
+ */
+if (!function_exists('laguna_unpublish_post')):
+function laguna_unpublish_post($post_id) {
+  global $wpdb;
+  $query = $wpdb->prepare("UPDATE $wpdb->posts SET `post_status` = '%s' WHERE `ID` = %d", array('unpublish', $post_id));
+  $wpdb->query($query);
+}
+endif;
+
+if (!function_exists('laguna_unpublish_resave_post')):
+function laguna_unpublish_resave_post($post_id) {
+  $post = get_post($post_id);
+  $post->post_status = 'unpublish';
+  wp_update_post($post);
+}
+endif;
