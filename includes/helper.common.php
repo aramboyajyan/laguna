@@ -241,7 +241,7 @@ function laguna_is_website($string, $soft = FALSE) {
     // We will validate URLs that do not have http/https and www in front of
     // the domain name. We will simply check if they start with those strings;
     // if they don't we will append them and let the regular checker do its job.
-    if (substr($string, 0, 7) != 'http://' || substr($string, 0, 8) != 'https://') {
+    if (substr($string, 0, 7) != 'http://' && substr($string, 0, 8) != 'https://') {
       $string = 'http://' . $string;
     }
   }
