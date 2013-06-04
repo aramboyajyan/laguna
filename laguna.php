@@ -245,9 +245,9 @@ class Laguna {
           laguna_get_view('admin.notice', array('class' => $class, 'message' => $message));
         }
       }
+      // Remove all messages from session.
+      unset($_SESSION['laguna_admin_messages']);
     }
-    // Remove all messages from session.
-    unset($_SESSION['laguna_admin_messages']);
   }
 
 }
