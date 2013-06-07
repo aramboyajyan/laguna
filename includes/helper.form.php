@@ -64,7 +64,7 @@ function laguna_field($field, $print = TRUE, $admin_page = FALSE) {
       break;
       
     case 'select':
-      $output .= '<select id="' . $field['id'] . '" name="' . $field['id'] . '">';
+      $output .= '<select id="' . $field['id'] . '" name="' . $field['id'] . '"' . (isset($field['multiple']) && $field['multiple'] ? 'multiple' : '') . '>';
       foreach ($field['options'] as $value => $title) {
         $selected = ($field['value'] == $value) ? ' selected="selected"' : '';
         $output .= '<option value="' . $value . '"' . $selected . '>' . $title . '</option>';

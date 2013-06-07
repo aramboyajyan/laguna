@@ -263,3 +263,10 @@ function laguna_is_website($string, $soft = FALSE) {
   $/xi", $string);
 }
 endif;
+
+/**
+ * Get file extension from a string.
+ */
+function laguna_get_extension($string) {
+  return substr(strrchr($string, '.'), 1);
+}
